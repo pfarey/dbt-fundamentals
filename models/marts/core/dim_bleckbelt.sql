@@ -4,7 +4,7 @@ with users as (
 user_belt as (
     select * from {{ ref('stg_user_belt')}}
 ),
-dicipline as (
+discipline as (
     select * from {{ ref('stg_discipline')}}
 ),
 
@@ -17,9 +17,15 @@ final as (
         users.agency,
         user_belt.color,
         user_belt.status,
-        user_belt.discipline_id,
-        user_belt.progression
-    from users
-    left join user_belt using (user_id)
+        discipline.title,
+        user_belt.progression,
+        discipline.description
+    from users 
+    left join user_belt
+        ON users.USER_ID = user_belt.USER_ID
+    left join discipline
+        ON user_belt.discipline_id = discipline.discipline_id 
+    WHERE 
+        user_belt.color is NOT NULL
 )
 select * from final
