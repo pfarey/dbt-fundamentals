@@ -4,5 +4,7 @@ select
     status,
     user_id,
     discipline_id,
-    progression
+    progression, 
+    cast(created_date as date),
+    cast(last_modified_date as date) as last_date
 from {{ source('blackbelt', 'user_belt') }}

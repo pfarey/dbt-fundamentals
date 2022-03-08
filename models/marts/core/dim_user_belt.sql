@@ -19,7 +19,10 @@ final as (
         user_belt.status,
         discipline.title,
         user_belt.progression,
-        discipline.description
+        discipline.description,
+        user_belt.created_date,
+        user_belt.last_date,
+        datediff(day, user_belt.created_date, user_belt.last_date) as days_from_creation
     from users 
     left join user_belt
         ON users.USER_ID = user_belt.USER_ID

@@ -38,3 +38,11 @@ sources:
             tests:
               - unique
               - not_null
+
+      - name: workflow_step
+        columns:
+          - name: id
+            description: Primary key for workflow_step.
+            tests:
+              - unique
+              - not_null
